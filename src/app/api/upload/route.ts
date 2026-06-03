@@ -60,7 +60,7 @@ export async function POST(request: Request) {
       operations: operations
     });
 
-    return NextResponse.json({ success: true, commitUrl: commitOutput?.commitUrl });
+    return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error('Error uploading to HF:', error);
     return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
