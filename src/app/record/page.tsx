@@ -252,6 +252,7 @@ export default function RecordPage() {
       const formData = new FormData();
       formData.append('uuid', uuid);
       formData.append('label', cleanLabel);
+      formData.append('email', email);
       formData.append('video', capturedPayload.video.blob, `${uuid}.webm`);
       formData.append('framesZip', zipBlob, `${uuid}_frames.zip`);
       formData.append('metadata', metadataBlob, `${uuid}.json`);

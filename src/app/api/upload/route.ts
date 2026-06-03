@@ -8,11 +8,12 @@ export async function POST(request: Request) {
     const framesZipFile = formData.get('framesZip') as File | null;
     const metadataFile = formData.get('metadata') as File | null;
     
-    // UUID from form data, to construct the folder path.
+    // Extract data from form to construct the folder path.
     const uuid = formData.get('uuid') as string;
     const label = formData.get('label') as string;
+    const email = formData.get('email') as string;
 
-    if (!videoFile || !framesZipFile || !metadataFile || !uuid || !label) {
+    if (!videoFile || !framesZipFile || !metadataFile || !uuid || !label || !email) {
       return NextResponse.json({ error: 'Missing required payload data.' }, { status: 400 });
     }
 
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
       }, { status: 500 });
     }
 
-    const basePath = `data/${label}`;
+    const basePath = `data/${email}/${label}`;
     
     // Package operations for an atomic Hugging Face commit
     const operations = [
