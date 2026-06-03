@@ -263,7 +263,13 @@ export default function RecordPage() {
         body: formData
       });
 
-      const result = await response.json();
+      let result;
+      try {
+        result = await response.json();
+      } catch (e) {
+        result = { error: 'Unknown server error' };
+      }
+
       if (!response.ok) {
         throw new Error(result.error || 'Upload failed');
       }

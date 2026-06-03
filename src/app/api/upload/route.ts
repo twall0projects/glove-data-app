@@ -11,9 +11,9 @@ export async function POST(request: Request) {
     // Extract data from form to construct the folder path.
     const uuid = formData.get('uuid') as string;
     const label = formData.get('label') as string;
-    const email = formData.get('email') as string;
+    const email = (formData.get('email') as string) || 'anonymous';
 
-    if (!videoFile || !framesZipFile || !metadataFile || !uuid || !label || !email) {
+    if (!videoFile || !framesZipFile || !metadataFile || !uuid || !label) {
       return NextResponse.json({ error: 'Missing required payload data.' }, { status: 400 });
     }
 
